@@ -1,4 +1,4 @@
-name: Positive Counter Verification Suite
+name: Demoblaze tests CI
 
 on:
   pull_request:
