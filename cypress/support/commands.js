@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+global.Given = (text, fn) => it(`Given ${text}`, fn);
+global.When = (text, fn) => it(`When ${text}`, fn);
+global.Then = (text, fn) => it(`Then ${text}`, fn);
+
+Cypress.Commands.add('apiLogin', (username, encodedpassword) => {
+  cy.request('POST', 'https://api.demoblaze.com/login', { username, encodedpassword })
+})
+
