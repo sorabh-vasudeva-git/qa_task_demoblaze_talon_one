@@ -1,9 +1,14 @@
 name: Demoblaze tests CI
 
 on:
+  push:
+    branches:
+      - master
+      - main
   pull_request:
     branches:
       - master
+      - main
 
 jobs:
   e2e-tests:

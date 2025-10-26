@@ -7,6 +7,8 @@ The goal was to validate the **login** and **product purchase** flows, focusing 
 ---
 
 ## 📂 Project Structure
+```text
+.
 ├── cypress
 │   ├── e2e
 │   │   ├── login.spec.js
@@ -100,7 +102,10 @@ Future improvement: leverage API endpoints for adding products directly to cart 
 
 📸 Test Reports
 
-Below is a screenshot of the Mochawesome HTML Report after successful execution:
+The test report can be find in the cypress/reports folder.
+
+CI Integration:
+ The workflow for executing test cases in the CI were also added. All the tests are passing in the CI.
 
 
 ✅ Summary
