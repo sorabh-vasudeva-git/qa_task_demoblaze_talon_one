@@ -1,8 +1,7 @@
 {
   "validUser": {
     "username": "sorabh.vasudeva+test@gmail.com",
-    "password": "12345678",
-    "encodedpassword": "MTIzNDU2Nzg="
+    "password": "12345678"
   },
   "invalidUser": {
     "username": "wrong@wrong.com",

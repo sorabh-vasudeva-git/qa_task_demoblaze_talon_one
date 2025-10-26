@@ -10,22 +10,31 @@ describe('Login Flow', () => {
     LoginPage.fillPassword(user.validUser.password);
     LoginPage.clickLogin();
     ProductDetails.verifyLoggedInUser(user.validUser.username);
-
   });
-  it('should not be able to login with invalid username', () => {
+
+  it('should not be able to login with unregistered user / invalid username', () => {
     LoginPage.openLoginModal();
     LoginPage.fillUsername(user.invalidUser.username);
     LoginPage.fillPassword(user.invalidUser.password);
-    LoginPage.clickLogin();
     cy.stubAlert();
+    LoginPage.clickLogin();
     cy.shouldHaveAlert('User does not exist.');
   });
-  it('should not be able to login with invalid username', () => {
+
+  it('should not be able to login with blank username and blank password', () => {
+    LoginPage.openLoginModal();
+    cy.stubAlert();
+    LoginPage.clickLogin();
+    cy.shouldHaveAlert('Please fill out Username and Password.');
+  });
+
+  it('should not be able to login with invalid password', () => {
     LoginPage.openLoginModal();
     LoginPage.fillUsername(user.validUser.username);
     LoginPage.fillPassword(user.invalidUser.password);
-    LoginPage.clickLogin();
     cy.stubAlert();
+    LoginPage.clickLogin();
     cy.shouldHaveAlert('Wrong password.');
-  });
+  })
+
 });

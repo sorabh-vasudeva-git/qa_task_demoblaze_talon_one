@@ -30,11 +30,11 @@ class LoginPage {
   }
 
   fillUsername(username) {
-    this.usernameField().clear().type(username, { delay: 30 });
+    this.usernameField().clear().type(username, { delay: 40 });
   }
 
   fillPassword(password) {
-    this.passwordField().clear().type(password, { delay: 30 });
+    this.passwordField().clear().type(password, { delay: 40 });
   }
 
   clickLogin() {
