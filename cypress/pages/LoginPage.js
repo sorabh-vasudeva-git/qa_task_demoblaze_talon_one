@@ -1,13 +1,13 @@
 class LoginPage {
   // Locators
-  loginButton()  {
-      cy.get('#login2').click() 
+  loginButton() {
+    cy.get('#login2').click()
   }
 
   loginModal() {
     return cy.get('#logInModal');
-  } 
-  
+  }
+
   usernameField() {
     return cy.get('#loginusername');
   }
@@ -17,22 +17,24 @@ class LoginPage {
   }
 
   submitLoginButton() {
-    return cy.contains('#logInModal button','Log in');
+    return cy.contains('#logInModal button', 'Log in');
   }
+
+
 
   // Actions
-  openLoginModal(){
+  openLoginModal() {
     cy.visit('/');
     this.loginButton();
-    this.loginModal().should('be.visible'); 
+    this.loginModal().should('be.visible');
   }
 
-   fillUsername(username) {
-    this.usernameField().clear().type(username);
+  fillUsername(username) {
+    this.usernameField().clear().type(username, { delay: 30 });
   }
 
   fillPassword(password) {
-    this.passwordField().clear().type(password);
+    this.passwordField().clear().type(password, { delay: 30 });
   }
 
   clickLogin() {
@@ -43,7 +45,7 @@ class LoginPage {
     this.openLoginModal();
     this.fillUsername(username);
     this.fillPassword(password);
-    this.submitLoginButton();
+    this.clickLogin();
   }
 }
 

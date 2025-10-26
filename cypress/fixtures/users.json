@@ -2,7 +2,7 @@
   "validUser": {
     "username": "sorabh.vasudeva+test@gmail.com",
     "password": "12345678",
-    "encodedpassword":"MTIzNDU2Nzg="
+    "encodedpassword": "MTIzNDU2Nzg="
   },
   "invalidUser": {
     "username": "wrong@wrong.com",

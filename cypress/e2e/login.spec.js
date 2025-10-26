@@ -1,20 +1,31 @@
 import LoginPage from '../pages/LoginPage';
+import ProductDetails from '../pages/ProductsPage';
+import user from '../fixtures/users.json';
 
 describe('Login Flow', () => {
-  beforeEach(function () {
-    cy.fixture('users').as('data');
-  });
 
-  Given('the user is on login page', function () {
+  it('should log in successfully with valid credentials', () => {
     LoginPage.openLoginModal();
-  });
+    LoginPage.fillUsername(user.validUser.username);
+    LoginPage.fillPassword(user.validUser.password);
+    LoginPage.clickLogin();
+    ProductDetails.verifyLoggedInUser(user.validUser.username);
 
-  When('they enter valid credentials', function () {
-    LoginPage.login(this.data.validUser.username, this.data.validUser.password);
   });
-
-  Then('they should see the dashboard', function () {
-  
+  it('should not be able to login with invalid username', () => {
+    LoginPage.openLoginModal();
+    LoginPage.fillUsername(user.invalidUser.username);
+    LoginPage.fillPassword(user.invalidUser.password);
+    LoginPage.clickLogin();
+    cy.stubAlert();
+    cy.shouldHaveAlert('User does not exist.');
+  });
+  it('should not be able to login with invalid username', () => {
+    LoginPage.openLoginModal();
+    LoginPage.fillUsername(user.validUser.username);
+    LoginPage.fillPassword(user.invalidUser.password);
+    LoginPage.clickLogin();
+    cy.stubAlert();
+    cy.shouldHaveAlert('Wrong password.');
   });
 });
-
