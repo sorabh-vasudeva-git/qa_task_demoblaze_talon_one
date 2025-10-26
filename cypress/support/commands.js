@@ -23,10 +23,6 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
-Cypress.Commands.add('apiLogin', (username, encodedpassword) => {
-  cy.request('POST', 'https://api.demoblaze.com/login', { username, encodedpassword })
-})
 Cypress.Commands.add('stubAlert', (alias = 'alert') => {
   cy.window().then(win => cy.stub(win, 'alert').as(alias));
 });

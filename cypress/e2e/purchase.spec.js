@@ -7,12 +7,11 @@ import product from '../fixtures/products.json';
 import orderDetails from '../fixtures/orderDetails.json';
 
 
-describe('Product Purchase Flow', () => {
+describe('Product Purchase Flow ', () => {
     beforeEach(() => {
         cy.visit('/');
         login.login(users.validUser.username, users.validUser.password);
-
-    });
+    })
 
     it('should be able to purchase laptop', () => {
 
@@ -30,16 +29,14 @@ describe('Product Purchase Flow', () => {
             product.Products.Laptops[0].price,
             product.Products.Laptops[0].description
         );
-        productDetails.clickAddToCart();
         cy.stubAlert();
+        productDetails.clickAddToCart();
         cy.shouldHaveAlert('Product added.');
         productDetails.clickCartLink();
 
         // Verify cart and place order
         cart.verifyProductInCart(product.Products.Laptops[0].name);
         cart.clickPlaceOrderButton();
-        // cy.stubAlert();
-        // cy.shouldHaveAlert('Product added.');
         cart.fillOrderForm(orderDetails.completeOrderDetails.name,
             orderDetails.completeOrderDetails.country,
             orderDetails.completeOrderDetails.city,
@@ -55,7 +52,7 @@ describe('Product Purchase Flow', () => {
 
     });
 
-    it('should not be  able to purchase laptop', () => {
+    it('Blank name and credit card details for purchase', () => {
 
         // Verify login and navigate through products
         products.verifyNavigationBarBrand('PRODUCT STORE');
@@ -73,7 +70,6 @@ describe('Product Purchase Flow', () => {
         );
         cy.stubAlert();
         productDetails.clickAddToCart();
-
         cy.shouldHaveAlert('Product added.');
         productDetails.clickCartLink();
 
@@ -82,9 +78,6 @@ describe('Product Purchase Flow', () => {
         cart.clickPlaceOrderButton();
         cart.fillOrderForm(orderDetails.completeOrderDetails.name,
             orderDetails.completeOrderDetails.country,
-            //orderDetails.completeOrderDetails.city,
-            //orderDetails.completeOrderDetails.card,
-            // orderDetails.incompleteOrderDetails.month,
             orderDetails.completeOrderDetails.year);
         cy.stubAlert();
         cart.clickPurchase();
